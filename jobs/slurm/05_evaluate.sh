@@ -16,7 +16,7 @@
 CODE_DIR=/home/shinde.b/inara_vscode
 CONDA_ENV=inara_env
 
-source ~/.bashrc
+source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate ${CONDA_ENV}
 
 mkdir -p /scratch/shinde.b/inara/logs
