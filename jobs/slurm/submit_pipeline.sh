@@ -143,7 +143,13 @@ fi
 if [[ "${STEP_EVAL}" == "true" ]]; then
     DEP=""
     [[ -n "${JID_BL}"   ]] && DEP="afterok:${JID_BL}"
-    [[ -n "${JID_DEEP}" ]] && DEP="${DEP:+${DEP}:}afterok:${JID_DEEP}"
+    if [[ -n "${JID_DEEP}" ]]; then
+        if [[ -n "${DEP}" ]]; then
+            DEP="${DEP}:${JID_DEEP}"
+        else
+            DEP="afterok:${JID_DEEP}"
+        fi
+    fi
 
     if [[ -n "${DEP}" ]]; then
         JID_EVAL=$(sbatch --parsable \
