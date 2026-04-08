@@ -128,7 +128,7 @@ python -c "import torch; print(torch.backends.mps.is_available())"
 
 ```bash
 # SSH into Explorer
-ssh shinde.b@login.explorer.neu.edu
+ssh shinde.b@login.explorer.northeastern.edu
 
 # Load base modules (check available with: module avail)
 module load anaconda3
@@ -138,11 +138,14 @@ conda create -n inara_env python=3.11 -y
 conda activate inara_env
 
 # Install packages — include CUDA-enabled PyTorch
-pip install numpy pandas scikit-learn joblib tqdm pyyaml
-pip install torch --index-url https://download.pytorch.org/whl/cu118
+#pip install numpy pandas scikit-learn joblib tqdm pyyaml
+#pip install torch --index-url https://download.pytorch.org/whl/cu118
+conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+conda install scikit-learn numpy pandas matplotlib
 
 # Verify GPU packages
-python -c "import torch; print(torch.cuda.is_available())"
+#python -c "import torch; print(torch.cuda.is_available())"
+python -c "import torch; print(f'PyTorch {torch.__version__}, CUDA: {torch.cuda.is_available()}')"
 ```
 
 > **Important:** Run `conda activate inara_env` before any pipeline commands.  
